@@ -45,7 +45,14 @@ from watchdog.events import FileSystemEventHandler, FileCreatedEvent
 from tkinter import filedialog, messagebox
 
 # Get the directory containing the script
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+def get_app_dir():
+    """Return the folder where the EXE (or script) is located."""
+    if getattr(sys, 'frozen', False):  # running from PyInstaller
+        return os.path.dirname(sys.executable)
+    else:  # running from source
+        return os.path.dirname(os.path.abspath(__file__))
+
+SCRIPT_DIR = get_app_dir()
 ISO2GOD_DIR = os.path.join(SCRIPT_DIR, "iso2god")
 CONFIG_FILE = os.path.join(SCRIPT_DIR, "watcher_config.json")
 
