@@ -480,7 +480,7 @@ class Iso2GodGUI:
         self.update_status("FTP Transfer Complete!")
 
     def send_over_ftp(self):
-        self.ftp.connect("192.168.1.28", 21 if self.ftp_port.get() == "Port (default: 21)" else int(self.ftp_port.get()))
+        self.ftp.connect(self.ftp_ip.get(), 21 if self.ftp_port.get() == "Port (default: 21)" else int(self.ftp_port.get()))
         self.ftp.login(self.ftp_user.get(), self.ftp_pass.get())
         local_folder = self.output_path.get()     
         remote_folder = ("Hdd1" if self.drv_field.get() == "Drive Folder (default: Hdd1)" else self.drv_field.get())+"/Content/0000000000000000"
